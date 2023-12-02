@@ -1,3 +1,14 @@
+# Todo API
+
+This is the backend for my TrueCoders final project. This API uses a SQL database to perform full CRUD operations on users and their todo items. There is a React front end and it's repo can be found [here](https://github.com/JonathanDPotter/todos-app).
+
+## Technologies used
+
+This app was built using Node, TypeScript, Express, SQL, bcrypt, cors, dotenv, Helmet.js, Lodash, morgan, MySql2, and Zod.
+
+## Routes
+
+```json
 {
   "/": { "GET": "Returns the home page." },
   "/home": { "GET": "Redirects to '/'." },
@@ -36,3 +47,4 @@
     }
   }
 }
+```

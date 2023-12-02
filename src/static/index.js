@@ -28,13 +28,20 @@ class Footer extends HTMLElement {
   }
 }
 
+class Routes extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  async connectedCallback() {
+    const routes = await (await fetch("http://localhost:1337/routes")).json();
+    this.innerHTML = `<pre>${JSON.stringify(routes, undefined, 2)}</pre>`;
+  }
+}
+
 customElements.define("header-component", Header);
 customElements.define("footer-component", Footer);
-
-const routes = { "/": { GET: "Returns the home page." } };
-
-const routesContainer = document.getElementsByTagName("pre")[0];
-routesContainer.textContent = JSON.stringify(routes);
+customElements.define("routes-component", Routes);
 
 const buttons = Array.from(document.getElementsByTagName("button"));
 

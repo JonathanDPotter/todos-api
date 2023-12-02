@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  TodoDBInput,
   createTodo,
   deleteTodo,
   getUserTodos,
