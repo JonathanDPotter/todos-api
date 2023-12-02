@@ -34,7 +34,9 @@ class Routes extends HTMLElement {
   }
 
   async connectedCallback() {
-    const routes = await (await fetch("http://localhost:1337/routes")).json();
+    const routes = await (
+      await fetch("https://jp-todos-api-22f1a0f56308.herokuapp.com/routes")
+    ).json();
     this.innerHTML = `<pre>${JSON.stringify(routes, undefined, 2)}</pre>`;
   }
 }
