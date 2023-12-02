@@ -25,13 +25,13 @@ export const getUsers = async (id: string | undefined) => {
 };
 
 export const createUser = async ({ username, password }: NewUser) => {
-  const salt = await bcrypt.genSalt(10);
-
-  const hash = bcrypt.hashSync(password, salt);
-
-  const newUser = { username, password: hash };
-
   try {
+    const salt = await bcrypt.genSalt(10);
+
+    const hash = bcrypt.hashSync(password, salt);
+
+    const newUser = { username, password: hash };
+
     return await query("INSERT INTO users SET ?", [newUser]);
   } catch (error: any) {
     throw new Error(error);
@@ -54,7 +54,7 @@ export const login = async ({ username, password }: NewUser) => {
 
     const token = await signJWT(userDoc[0]);
 
-    const user = pick(userDoc[0], ["id", "username"]);
+    const user = pick(userDoc[0], ["user_id", "username"]);
 
     return { user, token };
   } catch (error: any) {
@@ -81,6 +81,7 @@ export const updateUser = async (
 
 export const deleteUser = async (id: string) => {
   try {
+    await query("DELETE FROM todos WHERE user_id=?", [id]);
     return await query("DELETE FROM users WHERE user_id=?", [id]);
   } catch (error: any) {
     throw new Error(error);

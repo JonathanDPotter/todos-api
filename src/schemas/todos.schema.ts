@@ -1,4 +1,4 @@
-import { object, string, boolean, TypeOf } from "zod";
+import { object, string, boolean, TypeOf, number } from "zod";
 
 const makeMessage = (parameter: string, type?: string) => {
   return `Parameter '${parameter}' ${
@@ -19,9 +19,9 @@ export const todoInputSchema = object({
     required_error: makeMessage("complete"),
     invalid_type_error: makeMessage("complete", "boolean"),
   }),
-  user_id: string({
+  user_id: number({
     required_error: makeMessage("user_id"),
-    invalid_type_error: makeMessage("user_id", "string"),
+    invalid_type_error: makeMessage("user_id", "number"),
   }),
 });
 

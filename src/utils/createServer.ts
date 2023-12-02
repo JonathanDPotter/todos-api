@@ -12,15 +12,7 @@ const createServer = () => {
   server.use(express.static(path.join(__dirname, "../static")));
   server.use(morgan("dev"));
   server.use(cors({ origin: "*" }));
-  server.use(
-    helmet({
-      contentSecurityPolicy: {
-        directives: {
-          imgSrc: ["https://res.cloudinary.com"],
-        },
-      },
-    })
-  );
+  server.use(helmet());
   server.use(indexRoutes);
   server.use(errorHandler);
 
