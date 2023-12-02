@@ -44,8 +44,6 @@ export const login = async ({ username, password }: NewUser) => {
       username,
     ])) as UserDoc[];
 
-    console.log(userDoc[0]);
-
     if (!userDoc[0]) throw new Error("User not found.");
 
     const isAuth = await bcrypt.compare(password, userDoc[0].password);
@@ -58,6 +56,7 @@ export const login = async ({ username, password }: NewUser) => {
 
     return { user, token };
   } catch (error: any) {
+    console.log(error)
     throw new Error(error);
   }
 };
